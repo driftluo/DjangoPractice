@@ -2,6 +2,12 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 
+class ArticleTag(models.Model):
+	tag = models.CharField(max_length=500)
+
+	def __str__(self):
+		return self.tag
+
 class ArticlePost(models.Model):
 	title = models.CharField(max_length=200)
 	slug = models.CharField(max_length=200)
@@ -9,7 +15,7 @@ class ArticlePost(models.Model):
 	body = models.TextField()
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)
-	published = models.DateTimeField(default=timezone.now())
+	published = models.DateTimeField(default=timezone.now)
 	status = models.CharField(max_length=10, choices=(('draft', '草稿'), ('published','发布')), default='draft')
 	article_tag = models.ManyToManyField(ArticleTag, related_name='article_tag', blank=True)
 
@@ -18,12 +24,6 @@ class ArticlePost(models.Model):
 
 	def __str__(self):
 		return self.title
-
-class ArticleTag(models.Model):
-	tag = models.CharField(max_length=500)
-
-	def __str__(self):
-		return self.tag
 
 class Comment(models.Model):
 	articlepost = models.ForeignKey(ArticlePost, related_name='comments', on_delete=models.CASCADE)
