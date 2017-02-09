@@ -1,0 +1,21 @@
+{% extends "./base.html"%}
+
+{% block title %}
+  我的博客
+{% endblock title%}
+
+{% block content %}
+<article class='col-xs-12 col-md-8'>
+<h1>博客</h1>
+  {% for post in posts %}
+  <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+  <p>
+    {% for tag in post.article_tag.all %}
+      <p>{{ tag }}<p>
+    {% endfor %}
+  </p>
+  <p>{{ post.slug }}</p>
+  <p>Published {{ post.published }} by {{ post.author }}</p>
+  {% endfor %}
+</article>
+{% endblock %}
