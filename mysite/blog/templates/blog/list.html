@@ -22,5 +22,6 @@
   <p>{{ post.slug }}</p>
   <p>由{{ post.author }}发布于{{ post.published }} </p>
   {% endfor %}
+  {% include 'blog/pagination.html' %}
 </article>
 {% endblock %}
