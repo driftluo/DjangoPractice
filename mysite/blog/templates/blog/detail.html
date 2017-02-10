@@ -11,11 +11,30 @@
   {{ article.body }}
 </div>
 <div>
+  <h2>评论区</h2>
   {% for comment in comments %}
    <p>{{ comment.name }} {{ comment.created }}</p>
    <p>{{ comment.body }}</p>
   {% empty %}
-   <p>no commnet</p>
+   <p>无评论</p>
   {% endfor %}
 </div>
+<div>
+  <h2>新增评论</h2>
+  <form action={{ article.get_absolute_url }} method='post' class='from-horizontal'>
+    {% csrf_token %}
+    <div class='form-group'>
+      <label class='col-sm-2 control-label'>昵称：</label>
+      <div class='col-sm-10'>{{ comment_form.name }}</div>
+    </div>
+    <div class='form-group'>
+      <label class='col-sm-2 control-label'>评论内容：</label>
+      <div class='col-sm-10'>{{ comment_form.body }}</div>
+    </div>
+    <div class='form-group'>
+      <div class='col-sm-offset-2 col-sm-10'>
+        <input type='submit' value='提交'>
+      </div>
+    </div>
+   </form>
 {% endblock %}
