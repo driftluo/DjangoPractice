@@ -1,0 +1,21 @@
+{% extends './base.html'%}
+
+{% block title %}
+  {{ article.title }}
+{% endblock %}
+
+{% block content %}
+<h1>{{ article.title }}</h1>
+<p>{{ article.published }} by {{ article.author }}</p>
+<div>
+  {{ article.body }}
+</div>
+<div>
+  {% for comment in comments %}
+   <p>{{ comment.name }} {{ comment.created }}</p>
+   <p>{{ comment.body }}</p>
+  {% empty %}
+   <p>no commnet</p>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 
 class ArticleTag(models.Model):
 	tag = models.CharField(max_length=500)
@@ -18,6 +19,9 @@ class ArticlePost(models.Model):
 	published = models.DateTimeField(default=timezone.now)
 	status = models.CharField(max_length=10, choices=(('draft', '草稿'), ('published','发布')), default='draft')
 	article_tag = models.ManyToManyField(ArticleTag, related_name='article_tag', blank=True)
+
+	def get_absolute_url(self):
+		return reverse('blog:article_detail', args=[self.id])
 
 	class Meta:
 		ordering = ('-published',)
