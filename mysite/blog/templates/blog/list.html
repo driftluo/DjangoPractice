@@ -14,11 +14,7 @@
 <h1>博客</h1>
   {% for post in posts %}
   <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
-  <p>
-    {% for tag in post.article_tag.all %}
-      <p>{{ tag }}<p>
-    {% endfor %}
-  </p>
+  <p>{{ post.article_tag.all | join:"," }}<p>
   <p>{{ post.slug }}</p>
   <p>由{{ post.author }}发布于{{ post.published }} </p>
   {% endfor %}
