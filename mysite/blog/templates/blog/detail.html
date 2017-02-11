@@ -1,5 +1,7 @@
 {% extends './base.html'%}
 
+{% load blog_extras %}
+
 {% block title %}
   {{ article.title }}
 {% endblock %}
@@ -8,13 +10,13 @@
 <h1>{{ article.title }}</h1>
 <p>{{ article.published }} by {{ article.author }}</p>
 <div>
-  {{ article.body }}
+  {{ article.body | markdown }}
 </div>
 <div>
   <h2>评论区</h2>
   {% for comment in comments %}
    <p>{{ comment.name }} {{ comment.created }}</p>
-   <p>{{ comment.body }}</p>
+   <p>{{ comment.body | markdown }}</p>
   {% empty %}
    <p>无评论</p>
   {% endfor %}

@@ -25,7 +25,7 @@ SECRET_KEY = 'fdydz_sirr=u1ahg1%n1)092!0x^aow(dn*l11hfx6z+gf499l'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '192.168.1.110']
 
 
 # Application definition
