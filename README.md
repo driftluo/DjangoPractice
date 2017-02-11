@@ -21,3 +21,7 @@ TIME_ZONE = 'Asia/Shanghai'
 DATEBASES 增加"TIME_ZONE : 'Asia/Shanghai'"
 
 STATICFIES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+##功能
+
+自制一个 filter，使用 markdown 模块，让博客文章体和评论体支持 markdown 编辑
