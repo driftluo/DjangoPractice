@@ -1,2 +1,13 @@
-# DjangoPractice
-练手的 Django 项目
+# Django 博客小项目
+
+##版本：
+
+Django 1.10.5
+
+Python 3.6.0
+
+##项目：
+
+目前实现博客列表页、文章页、评论区及提交新评论。
+
+CSS、js 等文件是用的 Bootrap 源码，借用了一个样式，对前端的 CSS 等不是十分熟悉。
