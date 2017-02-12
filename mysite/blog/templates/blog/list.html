@@ -20,4 +20,9 @@
   {% endfor %}
   {% include 'blog/pagination.html' %}
 </article>
+<aside class="col-xs-6 col-md-4">
+  <h3>标签</h3>
+  {% for i in  tags %}
+  <p><a href="{% url 'blog:tag' i %}">{{ i }}</a></p>
+  {% endfor %}
 {% endblock %}

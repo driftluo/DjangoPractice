@@ -3,13 +3,16 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-from .models import ArticlePost, Comment
+from .models import ArticlePost, Comment, ArticleTag 
 from .forms import CommentForm
 
-def index(request):
+def index(request, tag_name=None):
 	post = ArticlePost.objects.filter(status='published')
+	tags =  ArticleTag.objects.values_list('tag', flat=True)
+	if tag_name:
+		post = post.filter(article_tag__tag=tag_name)
+
 	paginator = Paginator(post, 15)  #每页15个标题
-	
 	page = request.GET.get('page')
 	try:
 		current_page = paginator.page(page)
@@ -20,7 +23,7 @@ def index(request):
 	except EmptyPage:
 		current_page = paginator.page(paginator.num_pages)
 		post = current_page.object_list
-	return render(request, 'blog/list.html', {'posts': post, 'page':current_page})
+	return render(request, 'blog/list.html', {'posts': post, 'page':current_page, 'tags':tags})
 
 def article_detail(request, article_id):
 	article = get_object_or_404(ArticlePost, id=article_id)
